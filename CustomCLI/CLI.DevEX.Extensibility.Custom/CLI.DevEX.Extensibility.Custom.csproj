@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+	  <PackageVersion>1.0.0</PackageVersion>
+	  <PackageOutputPath>..\..\_Build\nugets</PackageOutputPath>
+	  <OutputPath>.\bin\</OutputPath>
+	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);CustomBuildOutputTarget</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sitecore.Devex.Client.Cli.Extensibility" Version="4.1.1" />
+    <PackageReference Include="Spectre.Console" Version="0.43.0" />
+  </ItemGroup>
+	<Target Name="CustomBuildOutputTarget">
+		<ItemGroup>
+			<TfmSpecificPackageFile Include="$(OutputPath)CLI.DevEX.Extensibility.Custom.dll" PackagePath="plugin" />
+			<TfmSpecificPackageFile Include="$(OutputPath)Spectre.Console.dll" PackagePath="plugin" />
+		</ItemGroup>
+	</Target>
+</Project>
